@@ -1,7 +1,7 @@
 import {
 	Page,
 	PuppeteerLifeCycleEvent,
-	devices,
+	KnownDevices,
 	HTTPResponse,
 	ScreenshotOptions,
 	PDFOptions,
@@ -353,7 +353,7 @@ export default async function (
 			await page.setCacheEnabled(pageCaching);
 
 			if (device) {
-				const emulatedDevice = devices[device];
+				const emulatedDevice = KnownDevices[device as keyof typeof KnownDevices];
 				if (emulatedDevice) {
 					await page.emulate(emulatedDevice);
 				}
