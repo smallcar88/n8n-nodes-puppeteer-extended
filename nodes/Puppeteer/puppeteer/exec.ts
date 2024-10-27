@@ -10,6 +10,7 @@ import {
 import { IDataObject, IBinaryData } from "n8n-workflow";
 import state from "./state";
 import { INodeParameters } from "./helpers";
+import { setTimeout } from "timers/promises";
 
 interface IPageContent {
 	dataPropertyName: string;
@@ -398,7 +399,7 @@ export default async function (
 			nodeParameters.nodeOptions.timeToWait ||
 			nodeParameters.globalOptions.timeToWait
 		)
-			await page.waitForTimeout(
+			await setTimeout(
 				nodeParameters.nodeOptions.timeToWait ??
 					nodeParameters.globalOptions.timeToWait
 			);
