@@ -1,5 +1,5 @@
-import { IExecuteFunctions } from "n8n-workflow";
 import {
+	IExecuteFunctions,
 	IDataObject,
 	INodeExecutionData,
 	INodeType,
@@ -46,7 +46,6 @@ export class Puppeteer implements INodeType {
 			apiKey: string;
 			baseUrl: string;
 		};
-		// @ts-ignore
 		const executionId = this.getExecutionId();
 
 		const globalOptions = this.getNodeParameter(
