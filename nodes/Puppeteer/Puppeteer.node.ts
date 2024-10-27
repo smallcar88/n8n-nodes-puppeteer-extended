@@ -7,7 +7,7 @@ import {
 	ILoadOptionsFunctions,
 	INodePropertyOptions,
 } from "n8n-workflow";
-import { devices } from "puppeteer";
+import { KnownDevices } from "puppeteer";
 import { nodeDescription } from "./Puppeteer.node.options";
 import { ipcRequest } from "./puppeteer/helpers";
 import server from "./puppeteer";
@@ -23,11 +23,11 @@ export class Puppeteer implements INodeType {
 			async getDevices(
 				this: ILoadOptionsFunctions
 			): Promise<INodePropertyOptions[]> {
-				const deviceNames = Object.keys(devices);
+				const deviceNames:string[] = Object.keys(KnownDevices);
 				const returnData: INodePropertyOptions[] = [];
 
 				for (const name of deviceNames) {
-					const device = devices[name];
+					const device = KnownDevices[name as keyof typeof KnownDevices];
 					returnData.push({
 						name,
 						value: name,
